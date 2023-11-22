@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookStore_API.Application\BookStore_API.Application.csproj" />
+    <ProjectReference Include="..\BookStore_API.Persistence\BookStore_API.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

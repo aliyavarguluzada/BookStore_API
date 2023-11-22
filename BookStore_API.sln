@@ -5,19 +5,19 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C511F4FD-9423-4278-B37F-343918F9D119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.Domain", "BookStore_API.Domain\BookStore_API.Domain.csproj", "{3E58C080-E0CF-42F1-8DD2-5EE5434EEF35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore_API.Domain", "BookStore_API.Domain\BookStore_API.Domain.csproj", "{3E58C080-E0CF-42F1-8DD2-5EE5434EEF35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.Application", "BookStore_API.Application\BookStore_API.Application.csproj", "{5EE51B86-5F1D-4DE6-B97A-D4E9FACA2BAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore_API.Application", "BookStore_API.Application\BookStore_API.Application.csproj", "{5EE51B86-5F1D-4DE6-B97A-D4E9FACA2BAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{064B6699-ACF4-42CA-92C7-8F926BC1D168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.Infrastructure", "BookStore_API.Infrastructure\BookStore_API.Infrastructure.csproj", "{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.Persistence", "BookStore_API.Persistence\BookStore_API.Persistence.csproj", "{DA89508C-7B56-4465-8195-793CFEBE995A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore_API.Infrastructure", "BookStore_API.Infrastructure\BookStore_API.Infrastructure.csproj", "{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{21DAB9D1-BBF1-4F2C-9EE8-78B4765C6C1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.API", "BookStore_API.API\BookStore_API.API.csproj", "{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore_API.API", "BookStore_API.API\BookStore_API.API.csproj", "{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore_API.Persistence", "BookStore_API.Persistence\BookStore_API.Persistence.csproj", "{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA89508C-7B56-4465-8195-793CFEBE995A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA89508C-7B56-4465-8195-793CFEBE995A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA89508C-7B56-4465-8195-793CFEBE995A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA89508C-7B56-4465-8195-793CFEBE995A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747A3B8D-B441-44EA-8E45-4BE1199C3CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,8 +53,8 @@ Global
 		{3E58C080-E0CF-42F1-8DD2-5EE5434EEF35} = {C511F4FD-9423-4278-B37F-343918F9D119}
 		{5EE51B86-5F1D-4DE6-B97A-D4E9FACA2BAA} = {C511F4FD-9423-4278-B37F-343918F9D119}
 		{D37D7E61-D4B6-44AF-B2B3-47E89AB4E99E} = {064B6699-ACF4-42CA-92C7-8F926BC1D168}
-		{DA89508C-7B56-4465-8195-793CFEBE995A} = {064B6699-ACF4-42CA-92C7-8F926BC1D168}
 		{747A3B8D-B441-44EA-8E45-4BE1199C3CE8} = {21DAB9D1-BBF1-4F2C-9EE8-78B4765C6C1C}
+		{26C80860-BBCB-4C6E-BD0E-FB614FFF17A4} = {064B6699-ACF4-42CA-92C7-8F926BC1D168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5208340-6E67-4571-8FD4-20F0EC9A8B10}
