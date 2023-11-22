@@ -2,11 +2,10 @@
 
 namespace BookStore_API.Domain.Entities
 {
-    public class Book : BaseEntity
+    public class Customer : BaseEntity
     {
         public string Name { get; set; }
-        public long Price { get; set; }
-        public int Stock { get; set; }
         public ICollection<Order> Orders { get; set; }
+
     }
 }
