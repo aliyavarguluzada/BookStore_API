@@ -2,11 +2,10 @@
 
 namespace BookStore_API.Domain.Entities
 {
-    public class Book : BaseEntity
+    public class Book : Product
     {
-        public string Name { get; set; }
-        public long Price { get; set; }
-        public int Stock { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public string Genre { get; set; }
+        public string Author { get; set; }
+        public DateTime YearPublished { get; set; }
     }
 }
