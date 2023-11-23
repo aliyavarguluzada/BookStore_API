@@ -1,5 +1,7 @@
 ﻿using BookStore_API.Application.Abstraction;
 using BookStore_API.Persistence.Concretes;
+using BookStore_API.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace BookStore_API.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IBookService, BookService>();
+            services.AddDbContext<BookStoreDbContext>(options => options.UseNpgsql("User Id=postgres;Database=BookStore_API_Db;Password=admin123;Host=localhost;Port=5432"));
         }
     }
 }
