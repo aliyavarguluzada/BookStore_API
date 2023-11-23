@@ -26,4 +26,8 @@
     <ProjectReference Include="..\BookStore_API.Domain\BookStore_API.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repostories\" />
+  </ItemGroup>
+
 </Project>
