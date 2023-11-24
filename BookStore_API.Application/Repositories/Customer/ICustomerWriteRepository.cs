@@ -2,7 +2,7 @@
 
 namespace BookStore_API.Application.Repositories
 {
-    internal interface ICustomerWriteRepository : IWriteRepository<Customer>
+    public interface ICustomerWriteRepository : IWriteRepository<Customer>
     {
     }
 }

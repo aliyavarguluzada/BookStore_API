@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookStore_API.Application.Repositories;
+using BookStore_API.Domain.Entities;
+using BookStore_API.Persistence.Contexts.Contexts;
 
-namespace BookStore_API.Persistence.Repostories.Order
+namespace BookStore_API.Persistence.Repostories
 {
-    internal class OrderWriteRepository
+    public class OrderWriteRepository : WriteRepository<Order>, IOrderWriteRepository
     {
+        public OrderWriteRepository(BookStoreDbContext context) : base(context)
+        {
+        }
     }
 }
