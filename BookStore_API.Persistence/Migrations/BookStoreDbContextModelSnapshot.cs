@@ -79,11 +79,6 @@ namespace BookStore_API.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -91,42 +86,12 @@ namespace BookStore_API.Persistence.Migrations
                     b.Property<long>("Price")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("ProductTypeId1")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("Stock")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductTypeId1");
-
                     b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("BookStore_API.Domain.Entities.ProductType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductType");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>
@@ -144,24 +109,6 @@ namespace BookStore_API.Persistence.Migrations
                     b.ToTable("OrderProduct");
                 });
 
-            modelBuilder.Entity("BookStore_API.Domain.Entities.Book", b =>
-                {
-                    b.HasBaseType("BookStore_API.Domain.Entities.Product");
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("YearPublished")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasDiscriminator().HasValue("Book");
-                });
-
             modelBuilder.Entity("BookStore_API.Domain.Entities.Order", b =>
                 {
                     b.HasOne("BookStore_API.Domain.Entities.Customer", "Customer")
@@ -171,17 +118,6 @@ namespace BookStore_API.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("BookStore_API.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("BookStore_API.Domain.Entities.ProductType", "ProductType")
-                        .WithMany()
-                        .HasForeignKey("ProductTypeId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductType");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>

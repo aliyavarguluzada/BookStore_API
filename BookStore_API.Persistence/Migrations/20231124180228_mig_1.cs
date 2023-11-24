@@ -25,16 +25,18 @@ namespace BookStore_API.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductType",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
+                    Price = table.Column<long>(type: "bigint", nullable: false),
+                    Stock = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductType", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,33 +57,6 @@ namespace BookStore_API.Persistence.Migrations
                         name: "FK_Orders_Customers_CustomerId1",
                         column: x => x.CustomerId1,
                         principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    ProductTypeId = table.Column<int>(type: "integer", nullable: false),
-                    Price = table.Column<long>(type: "bigint", nullable: false),
-                    Stock = table.Column<int>(type: "integer", nullable: false),
-                    ProductTypeId1 = table.Column<Guid>(type: "uuid", nullable: false),
-                    Discriminator = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    Genre = table.Column<string>(type: "text", nullable: true),
-                    Author = table.Column<string>(type: "text", nullable: true),
-                    YearPublished = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_ProductType_ProductTypeId1",
-                        column: x => x.ProductTypeId1,
-                        principalTable: "ProductType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -119,11 +94,6 @@ namespace BookStore_API.Persistence.Migrations
                 name: "IX_Orders_CustomerId1",
                 table: "Orders",
                 column: "CustomerId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductTypeId1",
-                table: "Products",
-                column: "ProductTypeId1");
         }
 
         /// <inheritdoc />
@@ -140,9 +110,6 @@ namespace BookStore_API.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "ProductType");
         }
     }
 }
