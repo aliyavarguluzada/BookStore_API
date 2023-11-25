@@ -15,7 +15,7 @@ namespace BookStore_API.API.Controllers
             _productWriteRepository = productWriteRepository;
         }
         [HttpGet]
-        public async void Get()
+        public async Task Get()
         {
              await _productWriteRepository.AddAsync(new()
             {
@@ -25,7 +25,7 @@ namespace BookStore_API.API.Controllers
                 Price = 10,
                 Stock = 100
             });
-           await _productWriteRepository.SaveAsync();
+           var count = await _productWriteRepository.SaveAsync();
         }
     }
 }

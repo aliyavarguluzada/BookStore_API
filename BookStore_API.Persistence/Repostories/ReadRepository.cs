@@ -2,6 +2,7 @@
 using BookStore_API.Domain.Entities.Common;
 using BookStore_API.Persistence.Contexts.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using System.Linq.Expressions;
 
 namespace BookStore_API.Persistence.Repostories
@@ -20,7 +21,9 @@ namespace BookStore_API.Persistence.Repostories
 
         public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method) => await Table.FirstOrDefaultAsync(method);
         public IQueryable<T> GetWhere(Expression<Func<T, bool>> method) => Table.Where(method);
-        public async Task<T> GetByIdAsync(string id) => await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+        public async Task<T> GetByIdAsync(string id)
+           //=> await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+           => await Table.FindAsync(id);
 
 
     }
