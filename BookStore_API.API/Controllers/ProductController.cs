@@ -17,7 +17,7 @@ namespace BookStore_API.API.Controllers
         [HttpGet]
         public async Task Get()
         {
-             await _productWriteRepository.AddAsync(new()
+            await _productWriteRepository.AddAsync(new()
             {
                 Id = Guid.NewGuid(),
                 Name = "Kitab_1",
@@ -25,7 +25,18 @@ namespace BookStore_API.API.Controllers
                 Price = 10,
                 Stock = 100
             });
-           var count = await _productWriteRepository.SaveAsync();
+            var count = await _productWriteRepository.SaveAsync();
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var product = await _productReadRepository.GetByIdAsync(id);
+
+            return Ok(product);
+
+        }
+
+
     }
 }
