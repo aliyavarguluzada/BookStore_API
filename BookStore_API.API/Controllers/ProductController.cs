@@ -19,13 +19,10 @@ namespace BookStore_API.API.Controllers
         {
             await _productWriteRepository.AddAsync(new()
             {
-                Id = Guid.NewGuid(),
-                Name = "Kitab_1",
-                CreatedDate = DateTime.UtcNow,
-                Price = 10,
-                Stock = 100
+                Name = "NewBook",
+                Price = 1.500F
             });
-            var count = await _productWriteRepository.SaveAsync();
+            await _productWriteRepository.SaveAsync();
         }
 
         [HttpGet("{id}")]
