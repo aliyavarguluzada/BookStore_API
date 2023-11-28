@@ -38,12 +38,13 @@ namespace BookStore_API.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Vm_Create_Product model)
         {
-            var newProduct = await _productWriteRepository.AddAsync(new()
-            {
-                Name = model.ProductName,
-                Price = model.ProductPrice,
-                Stock = model.ProductStock
-            });
+
+                var newProduct = await _productWriteRepository.AddAsync(new()
+                {
+                    Name = model.ProductName,
+                    Price = model.ProductPrice,
+                    Stock = model.ProductStock
+                });
             await _productWriteRepository.SaveAsync();
 
             return StatusCode((int)HttpStatusCode.Created);
