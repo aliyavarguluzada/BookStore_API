@@ -1,4 +1,5 @@
 using BookStore_API.Application.Validators.Products;
+using BookStore_API.Infrastructure.Filters;
 using BookStore_API.Persistence;
 using FluentValidation.AspNetCore;
 
@@ -9,8 +10,11 @@ builder.Services.AddPersistenceServices();
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
             policy.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
-builder.Services.AddControllers()
-    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
+builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+
+    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
+    .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

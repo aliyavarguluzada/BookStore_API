@@ -38,7 +38,10 @@ namespace BookStore_API.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Vm_Create_Product model)
         {
+            if (!ModelState.IsValid)
+            {
 
+            }
                 var newProduct = await _productWriteRepository.AddAsync(new()
                 {
                     Name = model.ProductName,
