@@ -24,4 +24,9 @@
     <ProjectReference Include="..\BookStore_API.Persistence\BookStore_API.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\resource\product-images\" />
+  </ItemGroup>
+
 </Project>
