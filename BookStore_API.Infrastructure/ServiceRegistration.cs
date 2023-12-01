@@ -6,7 +6,7 @@ namespace BookStore_API.Infrastructure
 {
     public static class ServiceRegistration
     {
-        public static void InfrastructureService(this IServiceCollection serviceCollection)
+        public static void AddInfrastructureServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IFileService, FileService>();
         }
