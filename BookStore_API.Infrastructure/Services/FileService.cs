@@ -43,13 +43,26 @@ namespace BookStore_API.Infrastructure.Services
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
 
+            List<(string fileName, string path)> datas = new();
+
+            List<bool> results = new();
+
+
             foreach (IFormFile file in files)
             {
                 string fileNewName = await FileRenameAsync(file.FileName);
 
                 bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
+                datas.Add((fileNewName, $"{uploadPath}\\{fileNewName}"));
+                results.Add(result);
             }
-            return null;
+
+
+            if (results.TrueForAll(r => r.Equals(true)))
+                return datas;
+
+            //TODO: should form Exception in case of if case below return false
+                return null;
         }
     }
 }
