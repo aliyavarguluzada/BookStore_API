@@ -3,7 +3,9 @@ using BookStore_API.Application.RequestParameters;
 using BookStore_API.Application.Services;
 using BookStore_API.Application.ViewModels.Products;
 using BookStore_API.Domain.Entities;
+using BookStore_API.Persistence.Repostories;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace BookStore_API.API.Controllers
@@ -12,24 +14,24 @@ namespace BookStore_API.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductReadRepository _productReadRepository;
         private readonly IProductWriteRepository _productWriteRepository;
+        private readonly IProductReadRepository _productReadRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IFileService _fileService;
-        private readonly IProductImageFileReadRepository _productImageFileReadRepository;
-        private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
         private readonly IFileReadRepository _fileReadRepository;
         private readonly IFileWriteRespository _fileWriteRespository;
+        private readonly IProductImageFileReadRepository _productImageFileReadRepository;
+        private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
         private readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
         private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
         public ProductController(IProductReadRepository productReadRepository,
-            IProductWriteRepository productWriteRepository,
-            IWebHostEnvironment webHostEnvironment,
-            IFileService fileService,
+           IProductWriteRepository productWriteRepository,
+           IWebHostEnvironment webHostEnvironment,
+           IFileService fileService,
+           IFileWriteRespository fileWriteRespository,
+            IFileReadRepository fileReadRepository,
             IProductImageFileReadRepository productImageFileReadRepository,
             IProductImageFileWriteRepository productImageFileWriteRepository,
-            IFileReadRepository fileReadRepository,
-            IFileWriteRespository fileWriteRespository,
             IInvoiceFileReadRepository invoiceFileReadRepository,
             IInvoiceFileWriteRepository invoiceFileWriteRepository)
         {
@@ -37,13 +39,15 @@ namespace BookStore_API.API.Controllers
             _productWriteRepository = productWriteRepository;
             _webHostEnvironment = webHostEnvironment;
             _fileService = fileService;
-            _productImageFileReadRepository = productImageFileReadRepository;
-            _productImageFileWriteRepository = productImageFileWriteRepository;
             _fileReadRepository = fileReadRepository;
             _fileWriteRespository = fileWriteRespository;
+            _productImageFileReadRepository = productImageFileReadRepository;
+            _productImageFileWriteRepository = productImageFileWriteRepository;
             _invoiceFileReadRepository = invoiceFileReadRepository;
             _invoiceFileWriteRepository = invoiceFileWriteRepository;
         }
+
+
 
 
         [HttpGet]
@@ -121,15 +125,14 @@ namespace BookStore_API.API.Controllers
         public async Task<IActionResult> Upload()
         {
             var datas = await _fileService.UploadAsync("resource\\product-images", Request.Form.Files);
-            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(c => new ProductImageFile()
+
+            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(c => new ProductImageFile
             {
                 FileName = c.fileName,
                 Path = c.path
-
             }).ToList());
 
             await _productImageFileWriteRepository.SaveAsync();
-
             return Ok();
 
         }

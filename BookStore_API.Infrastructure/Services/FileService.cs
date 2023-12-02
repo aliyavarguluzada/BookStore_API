@@ -119,7 +119,7 @@ namespace BookStore_API.Infrastructure.Services
                 string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
 
                 bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
-                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
+                datas.Add((fileNewName, $"{uploadPath}\\{fileNewName}"));
                 results.Add(result);
             }
 

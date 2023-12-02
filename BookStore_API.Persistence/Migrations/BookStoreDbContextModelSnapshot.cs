@@ -57,7 +57,7 @@ namespace BookStore_API.Persistence.Migrations
                         .HasMaxLength(21)
                         .HasColumnType("character varying(21)");
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
