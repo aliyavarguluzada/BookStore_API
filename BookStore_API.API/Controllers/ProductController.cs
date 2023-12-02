@@ -102,7 +102,7 @@ namespace BookStore_API.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Upload()
         {
-            _fileService.UploadAsync("product-images", Request.Form.Files);
+            _fileService.UploadAsync("resource\\product-images", Request.Form.Files);
             return Ok();
 
         }
