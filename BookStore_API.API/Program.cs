@@ -1,6 +1,7 @@
 using BookStore_API.Application.Validators.Products;
 using BookStore_API.Infrastructure;
 using BookStore_API.Infrastructure.Filters;
+using BookStore_API.Infrastructure.Services.Storage.Local;
 using BookStore_API.Persistence;
 using FluentValidation.AspNetCore;
 
@@ -10,7 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices();
 
 builder.Services.AddInfrastructureServices();
+//builder.Services.AddStorage();
 
+builder.Services.AddStorage<LocalStorage>();
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
             policy.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
