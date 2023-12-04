@@ -1,6 +1,6 @@
 ﻿using BookStore_API.Application.Repositories;
 using BookStore_API.Domain.Entities.Common;
-using BookStore_API.Persistence.Contexts.Contexts;
+using BookStore_API.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

@@ -1,4 +1,5 @@
-﻿using BookStore_API.Application.Repositories;
+﻿using BookStore_API.Application.Abstractions.Storage;
+using BookStore_API.Application.Repositories;
 using BookStore_API.Application.RequestParameters;
 using BookStore_API.Application.ViewModels.Products;
 using BookStore_API.Domain.Entities;
@@ -20,6 +21,7 @@ namespace BookStore_API.API.Controllers
         private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
         private readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
         private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
+        private readonly IStorageService _storageService;
         public ProductController(IProductReadRepository productReadRepository,
            IProductWriteRepository productWriteRepository,
            IWebHostEnvironment webHostEnvironment,
@@ -28,7 +30,8 @@ namespace BookStore_API.API.Controllers
             IProductImageFileReadRepository productImageFileReadRepository,
             IProductImageFileWriteRepository productImageFileWriteRepository,
             IInvoiceFileReadRepository invoiceFileReadRepository,
-            IInvoiceFileWriteRepository invoiceFileWriteRepository)
+            IInvoiceFileWriteRepository invoiceFileWriteRepository,
+            IStorageService storageService)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
@@ -39,6 +42,7 @@ namespace BookStore_API.API.Controllers
             _productImageFileWriteRepository = productImageFileWriteRepository;
             _invoiceFileReadRepository = invoiceFileReadRepository;
             _invoiceFileWriteRepository = invoiceFileWriteRepository;
+            _storageService = storageService;
         }
 
 
@@ -118,7 +122,17 @@ namespace BookStore_API.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Upload()
         {
+            var datas = await _storageService.UploadAsync("resource\\files", Request.Form.Files);
 
+            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(c => new ProductImageFile
+            {
+                FileName = c.fileName,
+                Path = c.pathOrContainerName,
+                Storage = "Local"
+            }).ToList());
+
+
+            await _productImageFileWriteRepository.SaveAsync();
             return Ok();
 
         }

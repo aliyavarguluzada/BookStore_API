@@ -1,12 +1,6 @@
-﻿using BookStore_API.Application.Abstractions.Storage;
-using BookStore_API.Application.Abstractions.Storage.Local;
+﻿using BookStore_API.Application.Abstractions.Storage.Local;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore_API.Infrastructure.Services.Storage.Local
 {
@@ -32,7 +26,7 @@ namespace BookStore_API.Infrastructure.Services.Storage.Local
         public bool HasFile(string path, string fileName) =>
             File.Exists($"{path}\\{fileName}");
 
-        async Task<bool> CopyFileAsync(string path, IFormFile file)
+        public async Task<bool> CopyFileAsync(string path, IFormFile file)
         {
             try
             {

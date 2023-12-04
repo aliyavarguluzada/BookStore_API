@@ -11,9 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices();
 
 builder.Services.AddInfrastructureServices();
-//builder.Services.AddStorage();
-
 builder.Services.AddStorage<LocalStorage>();
+
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
             policy.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 

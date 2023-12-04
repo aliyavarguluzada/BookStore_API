@@ -5,25 +5,28 @@ namespace BookStore_API.Infrastructure.Services.Storage
 {
     public class StorageService : IStorageService
     {
-        private readonly IStorageService _storageService;
+        private readonly IStorage _storage;
 
-        public StorageService(IStorageService storageService)
+        public StorageService(IStorage storage)
         {
-            _storageService = storageService;
+            _storage = storage;
         }
+
+        public string StorageName { get => _storage.GetType().Name; }
+
         public Task DeleteAsync(string pathOrContainer, string fileName) =>
-            _storageService.DeleteAsync(pathOrContainer, fileName);
+            _storage.DeleteAsync(pathOrContainer, fileName);
 
 
         public List<string> GetFiles(string pathOrContainer) =>
-            _storageService.GetFiles(pathOrContainer);
+            _storage.GetFiles(pathOrContainer);
 
 
         public bool HasFile(string pathOrContainer, string fileName) =>
-            _storageService.HasFile(pathOrContainer, fileName);
+            _storage.HasFile(pathOrContainer, fileName);
 
 
         public Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string pathOrContainerName, IFormFileCollection files)
-        => _storageService.UploadAsync(pathOrContainerName, files);
+        => _storage.UploadAsync(pathOrContainerName, files);
     }
 }

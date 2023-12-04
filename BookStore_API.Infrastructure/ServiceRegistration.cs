@@ -3,6 +3,7 @@ using BookStore_API.Application.Abstractions.Storage.Local;
 using BookStore_API.Infrastructure.Enums;
 using BookStore_API.Infrastructure.Services.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BookStore_API.Infrastructure
 {
@@ -10,7 +11,7 @@ namespace BookStore_API.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IStorageService, StorageService>();
+            serviceCollection.TryAddScoped<IStorageService, StorageService>();
         }
 
         public static void AddStorage<T>(this IServiceCollection serviceCollection) where T : class, IStorage

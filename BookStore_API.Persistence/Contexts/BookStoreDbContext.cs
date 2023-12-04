@@ -3,7 +3,7 @@ using BookStore_API.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using File = BookStore_API.Domain.Entities.File;
 
-namespace BookStore_API.Persistence.Contexts.Contexts
+namespace BookStore_API.Persistence.Contexts
 {
     public class BookStoreDbContext : DbContext
     {
