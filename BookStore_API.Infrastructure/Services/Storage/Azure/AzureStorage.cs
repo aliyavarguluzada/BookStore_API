@@ -22,9 +22,10 @@ namespace BookStore_API.Infrastructure.Services.Storage.Azure
             await blobClient.DeleteAsync();
         }
 
-        public List<string> GetFiles(string pathOrContainer)
+        public List<string> GetFiles(string containerName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceCLient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Select(b => b.Name).ToList();
         }
 
         public bool HasFile(string pathOrContainer, string fileName)
