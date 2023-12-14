@@ -3,11 +3,6 @@ using Azure.Storage.Blobs.Models;
 using BookStore_API.Application.Abstractions.Storage.Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore_API.Infrastructure.Services.Storage.Azure
 {
@@ -20,9 +15,11 @@ namespace BookStore_API.Infrastructure.Services.Storage.Azure
         {
             _blobServiceCLient = new(configuration["Storage:Azure"]);
         }
-        public Task DeleteAsync(string pathOrContainer, string fileName)
+        public async Task DeleteAsync(string containerName, string fileName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceCLient.GetBlobContainerClient(containerName);
+            BlobClient blobClient = _blobContainerClient.GetBlobClient(fileName);
+            await blobClient.DeleteAsync();
         }
 
         public List<string> GetFiles(string pathOrContainer)
