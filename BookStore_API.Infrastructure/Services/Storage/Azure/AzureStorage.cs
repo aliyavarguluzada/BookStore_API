@@ -28,9 +28,11 @@ namespace BookStore_API.Infrastructure.Services.Storage.Azure
             return _blobContainerClient.GetBlobs().Select(b => b.Name).ToList();
         }
 
-        public bool HasFile(string pathOrContainer, string fileName)
+        public bool HasFile(string containerName, string fileName)
         {
-            throw new NotImplementedException();
+
+            _blobContainerClient = _blobServiceCLient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Any(b => b.Name == fileName);
         }
 
         public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection files)
