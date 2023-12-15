@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BookStore_API.Infrastructure.Services.Storage.Local
 {
-    public class LocalStorage : ILocalStorage
+    public class LocalStorage : Storage, ILocalStorage
     {
         readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -58,6 +58,7 @@ namespace BookStore_API.Infrastructure.Services.Storage.Local
 
             foreach (IFormFile file in files)
             {
+                string fileNewName = await FileRenameAsync(path, file.Name, HasFile);
 
                 bool result = await CopyFileAsync($"{uploadPath}\\{file.Name}", file);
                 datas.Add((file.Name, $"{uploadPath}\\{file.Name}"));
